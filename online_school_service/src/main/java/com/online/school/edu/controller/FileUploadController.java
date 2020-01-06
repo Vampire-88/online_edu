@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.UUID;
 
 @RequestMapping("/service/oss")
 @RestController
@@ -18,7 +19,7 @@ public class FileUploadController {
     @PostMapping("upload")
     public JsonData uploadTeacherImg(@RequestParam MultipartFile file) {
         try {
-            String fileName = file.getOriginalFilename();
+            String fileName = UUID.randomUUID().toString() + file.getOriginalFilename();
             InputStream in = file.getInputStream();
             // Endpoint以杭州为例，其它Region请按实际情况填写。
             String endpoint = ConstantPropertiesUtil.ENDPOINT;
@@ -32,8 +33,8 @@ public class FileUploadController {
             ossClient.putObject(BucketName, fileName, in);
             // 关闭OSSClient。
             ossClient.shutdown();
-            String path = "http://"+BucketName+"."+endpoint+"/"+fileName;
-            return JsonData.success().data("fileUrl",path);
+            String path = "http://" + BucketName + "." + endpoint + "/" + fileName;
+            return JsonData.success().data("fileUrl", path);
         } catch (IOException e) {
             e.printStackTrace();
             return JsonData.error();

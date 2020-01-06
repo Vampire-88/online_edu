@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
-* @author 王威
-* @version 1.0
-* @title 项目启动时，执行本类的初始化方法
-* @description
-* @created 2020-01-02 16:55
-* @changeRecord
-*/
+ * @author 王威
+ * @version 1.0
+ * @title 项目启动时，执行本类的初始化方法
+ * @description
+ * @created 2020-01-02 16:55
+ * @changeRecord
+ */
 @Component
 public class ConstantPropertiesUtil implements InitializingBean {
 
@@ -35,10 +35,10 @@ public class ConstantPropertiesUtil implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        ENDPOINT=endpoint;
-        KEYID=keyId;
-        KEYSECRET=keySecret;
-        BUCKETNAME=bucketName;
+        ENDPOINT = endpoint;
+        KEYID = keyId;
+        KEYSECRET = keySecret;
+        BUCKETNAME = bucketName;
         logger.info("---阿里云域名节点注入成功---");
     }
 }

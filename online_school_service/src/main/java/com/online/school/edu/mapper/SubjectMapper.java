@@ -1,6 +1,6 @@
 package com.online.school.edu.mapper;
 
-import com.online.school.edu.entity.Subject;
+import com.online.school.edu.entity.EduSubject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author testjava
  * @since 2020-01-07
  */
-public interface SubjectMapper extends BaseMapper<Subject> {
+public interface SubjectMapper extends BaseMapper<EduSubject> {
 
 }

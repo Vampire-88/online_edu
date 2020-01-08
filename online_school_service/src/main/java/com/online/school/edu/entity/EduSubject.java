@@ -23,7 +23,7 @@ import java.util.Date;
 @Accessors(chain = true)
 @TableName("edu_subject")
 @ApiModel(value="Subject对象", description="课程科目")
-public class Subject implements Serializable {
+public class EduSubject implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

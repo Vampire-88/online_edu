@@ -2,7 +2,7 @@ package com.online.school.edu.controller;
 
 
 import com.online.school.common.result.JsonData;
-import com.online.school.edu.service.SubjectService;
+import com.online.school.edu.service.EduSubjectService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,10 +20,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/service/subject")
 @CrossOrigin
-public class SubjectController {
+public class EduSubjectController {
 
     @Resource
-    private SubjectService subjectService;
+    private EduSubjectService subjectService;
 
     @PostMapping("/importExcelSubject")
     public JsonData importExcelSubject(@RequestParam("file") MultipartFile file) {

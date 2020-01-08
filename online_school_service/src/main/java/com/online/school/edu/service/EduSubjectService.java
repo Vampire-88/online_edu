@@ -1,7 +1,7 @@
 package com.online.school.edu.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.online.school.edu.entity.Subject;
+import com.online.school.edu.entity.EduSubject;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  * @author testjava
  * @since 2020-01-07
  */
-public interface SubjectService extends IService<Subject> {
+public interface EduSubjectService extends IService<EduSubject> {
 
     /**
     * 功能描述 : 读取excel文件内容

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/service/base")
 //可以解决跨域问题，跨域即（端口，协议，ip其中一个不同就会有跨域问题）
 @CrossOrigin
-public class BaseController {
+public class EduBaseController {
 
     @GetMapping("info")
     public JsonData info(){

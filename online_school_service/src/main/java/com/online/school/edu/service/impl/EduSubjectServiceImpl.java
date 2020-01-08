@@ -2,9 +2,9 @@ package com.online.school.edu.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.online.school.edu.entity.Subject;
+import com.online.school.edu.entity.EduSubject;
 import com.online.school.edu.mapper.SubjectMapper;
-import com.online.school.edu.service.SubjectService;
+import com.online.school.edu.service.EduSubjectService;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -28,9 +28,9 @@ import java.util.List;
  * @since 2020-01-07
  */
 @Service("subjectService")
-public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> implements SubjectService {
+public class EduSubjectServiceImpl extends ServiceImpl<SubjectMapper, EduSubject> implements EduSubjectService {
 
-    private static final Logger logger = LoggerFactory.getLogger(SubjectServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(EduSubjectServiceImpl.class);
 
     @Override
     public List<String> importExcel(MultipartFile file) {
@@ -48,10 +48,10 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
                     continue;
                 }
                 if(null!=row.getCell(0)&&null!=row.getCell(1)){
-                    Subject subjectOne = existSubject(row.getCell(0).getStringCellValue(),"0");
+                    EduSubject subjectOne = existSubject(row.getCell(0).getStringCellValue(),"0");
                     if(subjectOne==null){
                         String title = row.getCell(0).getStringCellValue();
-                        Subject subject = new Subject();
+                        EduSubject subject = new EduSubject();
                         subject.setTitle(title);
                         subject.setParentId("0");
                         subject.setSort(0);
@@ -59,7 +59,7 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
                         subjectOne = existSubject(title,"0");
                     }
                     if(existSubject(row.getCell(1).getStringCellValue(),subjectOne.getId())==null) {
-                        Subject subjectTwo = new Subject();
+                        EduSubject subjectTwo = new EduSubject();
                         subjectTwo.setParentId(subjectOne.getId());
                         subjectTwo.setTitle(row.getCell(1).getStringCellValue());
                         subjectTwo.setSort(0);
@@ -77,8 +77,8 @@ public class SubjectServiceImpl extends ServiceImpl<SubjectMapper, Subject> impl
         return list;
     }
 
-    private Subject existSubject(String name,String parentId){
-        QueryWrapper<Subject> wrapper = new QueryWrapper<>();
+    private EduSubject existSubject(String name, String parentId){
+        QueryWrapper<EduSubject> wrapper = new QueryWrapper<>();
         wrapper.eq("title",name);
         wrapper.eq("parent_id",parentId);
         return baseMapper.selectOne(wrapper);

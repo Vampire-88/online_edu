@@ -1,0 +1,10 @@
+package com.online.school.edu.service;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+
+public interface EduComplexService {
+
+    String UpLoadFile(MultipartFile file) throws IOException;
+}

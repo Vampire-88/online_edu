@@ -4,6 +4,7 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.online.school.common.result.JsonData;
 import com.online.school.edu.handler.ConstantPropertiesUtil;
+import org.joda.time.DateTime;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,7 +20,8 @@ public class FileUploadController {
     @PostMapping("upload")
     public JsonData uploadTeacherImg(@RequestParam MultipartFile file) {
         try {
-            String fileName = UUID.randomUUID().toString() + file.getOriginalFilename();
+            String date = new DateTime().toString("yyyy/MM/dd");
+            String fileName = date+"/"+UUID.randomUUID().toString() + file.getOriginalFilename();
             InputStream in = file.getInputStream();
             // Endpoint以杭州为例，其它Region请按实际情况填写。
             String endpoint = ConstantPropertiesUtil.ENDPOINT;

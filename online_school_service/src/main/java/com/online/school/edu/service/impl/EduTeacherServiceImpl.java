@@ -20,7 +20,7 @@ import java.lang.reflect.Field;
  * @author testjava
  * @since 2019-12-11
  */
-@Service
+@Service("eduTeacherService")
 public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeacher> implements EduTeacherService {
 
     /**

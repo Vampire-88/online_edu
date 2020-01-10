@@ -35,7 +35,7 @@ public class EduTeacherController {
     * @author 王威
     * @created 2019-12-11 12:56
     */
-    @GetMapping
+    @GetMapping("getAllTeacherList")
     public JsonData getAllTeacherList(){
         List<EduTeacher> eduTeacherList = eduTeacherService.list(null);
         return JsonData.success().data("items",eduTeacherList);

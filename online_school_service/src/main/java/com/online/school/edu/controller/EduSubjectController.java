@@ -2,6 +2,7 @@ package com.online.school.edu.controller;
 
 
 import com.online.school.common.result.JsonData;
+import com.online.school.edu.entity.EduSubject;
 import com.online.school.edu.service.EduSubjectService;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -34,9 +35,33 @@ public class EduSubjectController {
         return JsonData.success().message("开始读取数据");
     }
 
-    @GetMapping()
+    @GetMapping("/getAllSubjectDto")
     public JsonData getAllSubjectDto(){
-        return JsonData.success();
+        List list = subjectService.getAllSubjectDto();
+        return JsonData.success().data("OneSubjectDto",list);
     }
+
+    @GetMapping("getSubjectById/{id}")
+    public JsonData getSubjectById(@PathVariable String id){
+        EduSubject eduSubject = subjectService.getById(id);
+        return JsonData.success().data("eduSubject",eduSubject);
+    }
+
+    @DeleteMapping("deleteSubjectById/{id}")
+    public JsonData deleteSubjectById(@PathVariable String id){
+        if(subjectService.deleteSubjectDto(id)){
+            return JsonData.success();
+        }
+        return JsonData.error();
+    }
+
+    @PostMapping("addLevel")
+    public JsonData addOneLevel(@RequestBody EduSubject subject){
+            if (subjectService.addSubject(subject)) {
+                return JsonData.success();
+            }
+        return JsonData.error();
+    }
+
 }
 

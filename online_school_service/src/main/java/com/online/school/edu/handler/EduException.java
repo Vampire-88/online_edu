@@ -8,11 +8,6 @@ import lombok.NoArgsConstructor;
 public class EduException extends RuntimeException{
 
     /**
-    * 状态码
-    */
-    private Integer code;
-
-    /**
     * 异常信息
     */
     private String message;

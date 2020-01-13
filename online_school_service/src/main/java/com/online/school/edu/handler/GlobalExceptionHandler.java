@@ -1,6 +1,7 @@
 package com.online.school.edu.handler;
 
 import com.online.school.common.result.JsonData;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +30,14 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public JsonData error(EduException e){
         e.printStackTrace();
-        return JsonData.error().message("出现了异常");
+        return JsonData.error().message(e.getMessage());
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+    public JsonData error(MethodArgumentNotValidException e){
+        e.printStackTrace();
+        String s = e.getMessage().split(";")[5].split("]]")[0];
+        return JsonData.error().message(s.substring(18));
     }
 }

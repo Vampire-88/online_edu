@@ -17,5 +17,5 @@ import com.online.school.edu.entity.request.TeacherRequest;
 */
 public interface EduTeacherService extends IService<EduTeacher> {
 
-    void pageListCondition(Page<EduTeacher> eduTeacherPage, TeacherRequest teacherRequest) throws IllegalAccessException;
+    void pageListCondition(Page<EduTeacher> eduTeacherPage, TeacherRequest teacherRequest);
 }

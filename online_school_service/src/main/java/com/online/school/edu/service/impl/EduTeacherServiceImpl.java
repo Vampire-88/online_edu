@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.online.school.edu.entity.EduTeacher;
 import com.online.school.edu.entity.request.TeacherRequest;
+import com.online.school.edu.handler.EduException;
 import com.online.school.edu.mapper.EduTeacherMapper;
 import com.online.school.edu.service.EduTeacherService;
 import org.springframework.stereotype.Service;
@@ -33,38 +34,43 @@ public class EduTeacherServiceImpl extends ServiceImpl<EduTeacherMapper, EduTeac
     * @created 2019-12-12 14:32
     */
     @Override
-    public void pageListCondition(Page<EduTeacher> eduTeacherPage, TeacherRequest teacherRequest) throws IllegalAccessException {
-        if(null == teacherRequest ){
-            baseMapper.selectPage(eduTeacherPage,null);
-            return;
-        }
-        QueryWrapper queryWrapper = new QueryWrapper();
-        Field[] fields = teacherRequest.getClass().getDeclaredFields();
-        Boolean bol = false;
-        for(Field field:fields){
-            field.setAccessible(true);
-            if(!StringUtils.isEmpty(field.get(teacherRequest))){
-                switch (field.getName()){
-                    case "name":
-                        queryWrapper.like("name",field.get(teacherRequest));
-                        break;
-                    case "level":
-                        queryWrapper.eq("level",field.get(teacherRequest));
-                        break;
-                    case "begin":
-                        queryWrapper.ge("gmt_create",field.get(teacherRequest));
-                        break;
-                    case "end":
-                        queryWrapper.le("gmt_create",field.get(teacherRequest));
-                }
-                bol = true;
+    public void pageListCondition(Page<EduTeacher> eduTeacherPage, TeacherRequest teacherRequest){
+        try {
+            if(null == teacherRequest ){
+                baseMapper.selectPage(eduTeacherPage,null);
+                return;
             }
+            QueryWrapper queryWrapper = new QueryWrapper();
+            Field[] fields = teacherRequest.getClass().getDeclaredFields();
+            boolean bol = false;
+            for(Field field:fields){
+                field.setAccessible(true);
+                if(!StringUtils.isEmpty(field.get(teacherRequest))){
+                    switch (field.getName()){
+                        case "name":
+                            queryWrapper.like("name",field.get(teacherRequest));
+                            break;
+                        case "level":
+                            queryWrapper.eq("level",field.get(teacherRequest));
+                            break;
+                        case "begin":
+                            queryWrapper.ge("gmt_create",field.get(teacherRequest));
+                            break;
+                        case "end":
+                            queryWrapper.le("gmt_create",field.get(teacherRequest));
+                    }
+                    bol = true;
+                }
+            }
+            if(bol) {
+                baseMapper.selectPage(eduTeacherPage, queryWrapper);
+            }else {
+                baseMapper.selectPage(eduTeacherPage,null);
+            }
+        }catch (IllegalAccessException e) {
+            throw new EduException("讲师组合条件查询失败");
         }
-        if(bol) {
-            baseMapper.selectPage(eduTeacherPage, queryWrapper);
-        }else {
-            baseMapper.selectPage(eduTeacherPage,null);
-        }
+
 
     }
 }

@@ -53,9 +53,8 @@ public class EduTeacherController {
     public JsonData getPageTeacherList(@PathVariable long page,@PathVariable long limit){
         Page<EduTeacher> eduTeacherPage = new Page<>(page,limit);
         eduTeacherService.page(eduTeacherPage, null);
-        long total = eduTeacherPage.getTotal();
         List<EduTeacher> records = eduTeacherPage.getRecords();
-        return JsonData.success().data("total",total).data("items",records);
+        return JsonData.success().data("total",eduTeacherPage.getTotal()).data("items",records);
     }
 
     /**
@@ -67,7 +66,7 @@ public class EduTeacherController {
     * @created 2019-12-17 16:00
     */
     @PostMapping("conditionPageList/{page}/{limit}")
-    public JsonData getMoreConditionPageList(@PathVariable long page, @PathVariable long limit,@RequestBody(required = false) TeacherRequest teacherRequest) throws IllegalAccessException {
+    public JsonData getMoreConditionPageList(@PathVariable long page, @PathVariable long limit,@RequestBody(required = false) TeacherRequest teacherRequest){
         Page<EduTeacher> eduTeacherPage = new Page<>(page,limit);
         eduTeacherService.pageListCondition(eduTeacherPage,teacherRequest);
         long total = eduTeacherPage.getTotal();

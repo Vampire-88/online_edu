@@ -3,6 +3,7 @@ package com.online.school.edu.service.impl;
 import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.online.school.common.utils.FileUpLoadUtils;
+import com.online.school.edu.entity.enmu.EAliYunFileType;
 import com.online.school.edu.handler.ConstantPropertiesUtil;
 import com.online.school.edu.service.EduComplexService;
 import org.springframework.stereotype.Service;
@@ -15,8 +16,8 @@ import java.io.InputStream;
 public class EduComplexServiceImpl implements EduComplexService {
 
     @Override
-    public String UpLoadFile(MultipartFile file) throws IOException {
-        String fileName = FileUpLoadUtils.getFileName(file);
+    public String UpLoadFile(MultipartFile file, EAliYunFileType aliYunFileType) throws IOException {
+        String fileName = FileUpLoadUtils.getFileName(file,aliYunFileType.getMessage());
         InputStream in = file.getInputStream();
         // Endpoint以杭州为例，其它Region请按实际情况填写。
         String endpoint = ConstantPropertiesUtil.ENDPOINT;

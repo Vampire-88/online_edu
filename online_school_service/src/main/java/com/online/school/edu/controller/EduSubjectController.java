@@ -26,6 +26,14 @@ public class EduSubjectController {
     @Resource
     private EduSubjectService subjectService;
 
+    /**
+     * 功能描述 : TODO
+     *
+     * @param  null : TODO
+     * @return
+     * @author 王威
+     * @created 2020-01-14 16:50
+     */
     @PostMapping("/importExcelSubject")
     public JsonData importExcelSubject(@RequestParam("file") MultipartFile file) {
         List<String> list = subjectService.importExcel(file);
@@ -35,18 +43,42 @@ public class EduSubjectController {
         return JsonData.success().message("开始读取数据");
     }
 
+    /**
+     * 功能描述 : TODO
+     *
+     * @param  null : TODO
+     * @return
+     * @author 王威
+     * @created 2020-01-14 16:50
+     */
     @GetMapping("/getAllSubjectDto")
     public JsonData getAllSubjectDto(){
         List list = subjectService.getAllSubjectDto();
         return JsonData.success().data("OneSubjectDto",list);
     }
 
+    /**
+     * 功能描述 : TODO
+     *
+     * @param  null : TODO
+     * @return
+     * @author 王威
+     * @created 2020-01-14 16:50
+     */
     @GetMapping("getSubjectById/{id}")
     public JsonData getSubjectById(@PathVariable String id){
         EduSubject eduSubject = subjectService.getById(id);
         return JsonData.success().data("eduSubject",eduSubject);
     }
 
+    /**
+     * 功能描述 : TODO
+     *
+     * @param  null : TODO
+     * @return
+     * @author 王威
+     * @created 2020-01-14 16:50
+     */
     @DeleteMapping("deleteSubjectById/{id}")
     public JsonData deleteSubjectById(@PathVariable String id){
         if(subjectService.deleteSubjectDto(id)){
@@ -55,6 +87,14 @@ public class EduSubjectController {
         return JsonData.error();
     }
 
+    /**
+     * 功能描述 : TODO
+     *
+     * @param  null : TODO
+     * @return
+     * @author 王威
+     * @created 2020-01-14 16:50
+     */
     @PostMapping("addLevel")
     public JsonData addOneLevel(@RequestBody EduSubject subject){
             if (subjectService.addSubject(subject)) {

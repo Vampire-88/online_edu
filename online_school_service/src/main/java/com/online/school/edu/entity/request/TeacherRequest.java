@@ -1,5 +1,6 @@
 package com.online.school.edu.entity.request;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 /**
@@ -15,23 +16,15 @@ import lombok.Data;
 @Data
 public class TeacherRequest {
 
-    /**
-    * 讲师姓名
-    */
+    @ApiModelProperty("讲师姓名")
     private String name;
 
-    /**
-    * 讲师头衔
-    */
+    @ApiModelProperty("讲师头衔")
     private String level;
 
-    /**
-    * 开始时间
-    */
+    @ApiModelProperty("开始时间")
     private String begin;
 
-    /**
-    * 结束时间
-    */
+    @ApiModelProperty("结束时间")
     private String end;
 }

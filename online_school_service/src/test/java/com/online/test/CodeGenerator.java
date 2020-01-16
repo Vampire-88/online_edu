@@ -52,13 +52,13 @@ public class CodeGenerator {
         pc.setParent("com.online.school");
         pc.setController("controller");
         pc.setEntity("entity");
-        pc.setService("edu");
+        pc.setService("service");
         pc.setMapper("mapper");
         mpg.setPackageInfo(pc);
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("edu_course_description");
+        strategy.setInclude("statistics_daily");
         strategy.setNaming(NamingStrategy.underline_to_camel);//数据库表映射到实体的命名策略
         strategy.setTablePrefix(pc.getModuleName() + "_"); //生成实体时去掉表前缀
 

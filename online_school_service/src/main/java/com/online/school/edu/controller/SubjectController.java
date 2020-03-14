@@ -34,7 +34,7 @@ public class SubjectController {
      * @author 王威
      * @created 2020-01-14 16:50
      */
-    @PostMapping("/importExcelSubject")
+    @PostMapping("importExcelSubject")
     public JsonData importExcelSubject(@RequestParam("file") MultipartFile file) {
         List<String> list = subjectService.importExcel(file);
         if (subjectService.importExcel(file).size() > 0) {
@@ -51,7 +51,7 @@ public class SubjectController {
      * @author 王威
      * @created 2020-01-14 16:50
      */
-    @GetMapping("/getAllSubjectDto")
+    @GetMapping("getAllSubjectDto")
     public JsonData getAllSubjectDto(){
         List list = subjectService.getAllSubjectDto();
         return JsonData.success().data("OneSubjectDto",list);

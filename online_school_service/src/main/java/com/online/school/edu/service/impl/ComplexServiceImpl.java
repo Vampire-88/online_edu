@@ -1,7 +1,7 @@
 package com.online.school.edu.service.impl;
 
 import com.aliyun.oss.OSS;
-import com.aliyun.oss.OSSClientBuilder;
+import com.aliyun.oss.OSSClient;
 import com.online.school.common.utils.FileUpLoadUtils;
 import com.online.school.edu.entity.enmu.EAliYunFileType;
 import com.online.school.edu.handler.ConstantPropertiesUtil;
@@ -26,7 +26,7 @@ public class ComplexServiceImpl implements ComplexService {
         String accessKeySecret = ConstantPropertiesUtil.KEYSECRET;
         String BucketName = ConstantPropertiesUtil.BUCKETNAME;
         // 创建OSSClient实例。
-        OSS ossClient = new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
+        OSS ossClient = new OSSClient(endpoint, accessKeyId, accessKeySecret);
         // 上传文件流。
         ossClient.putObject(BucketName, fileName, in);
         // 关闭OSSClient。

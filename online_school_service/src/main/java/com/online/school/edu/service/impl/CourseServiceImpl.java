@@ -143,7 +143,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, EduCourse> impl
 
     @Override
     public void removeCourseById(String id) {
-
+        baseMapper.deleteById(id);
     }
 
 

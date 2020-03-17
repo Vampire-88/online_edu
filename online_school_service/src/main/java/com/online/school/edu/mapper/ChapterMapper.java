@@ -2,6 +2,11 @@ package com.online.school.edu.mapper;
 
 import com.online.school.edu.entity.Chapter;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.online.school.edu.entity.response.ChapterDto;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * <p>

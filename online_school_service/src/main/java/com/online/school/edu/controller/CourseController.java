@@ -6,9 +6,11 @@ import com.online.school.common.result.JsonData;
 import com.online.school.edu.entity.EduCourse;
 import com.online.school.edu.entity.request.CourseInfoRequest;
 import com.online.school.edu.entity.request.CourseRequest;
+import com.online.school.edu.entity.response.CourseInfo;
 import com.online.school.edu.service.CourseService;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.spring.web.json.Json;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -129,6 +131,23 @@ public class CourseController {
     public JsonData updateCourseInfo(@Validated(value = {CourseInfoRequest.updateCourseInfoView.class}) @RequestBody CourseInfoRequest courseInfoRequest){
          courseService.updateCourseInfo(courseInfoRequest);
          return JsonData.success();
+    }
+
+    @GetMapping("getAllCourseInfo/{courseId}")
+    public JsonData getAllCourseInfo(@PathVariable String courseId){
+        CourseInfo courseInfo = courseService.getAllCourseInfo(courseId);
+        return JsonData.success().data("courseInfo",courseInfo);
+    }
+
+    @PostMapping("updateCourseStatus/{courseId}")
+    public JsonData updateCourseStatus(@PathVariable String courseId){
+        EduCourse course = courseService.getById(courseId);
+        if(course!=null) {
+            course.setStatus("Normal");
+            courseService.updateById(course);
+            return JsonData.success();
+        }
+        return JsonData.error();
     }
 }
 

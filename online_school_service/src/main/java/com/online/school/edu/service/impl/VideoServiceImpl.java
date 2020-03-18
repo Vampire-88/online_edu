@@ -11,6 +11,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -30,6 +31,7 @@ public class VideoServiceImpl extends ServiceImpl<VideoMapper, Video> implements
             QueryWrapper<Video> queryWrapper = new QueryWrapper<>();
             queryWrapper.eq("chapter_id",chapterDto.getId());
             List<Video> videoList = baseMapper.selectList(queryWrapper);
+            videoList.sort(Comparator.comparing(Video::getSort));
             if(!videoList.isEmpty()) {
                 List<VideoDto> videoDtoList = new ArrayList<>();
                 videoList.forEach(video -> {

@@ -2,6 +2,7 @@ package com.online.school.edu.mapper;
 
 import com.online.school.edu.entity.EduCourse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.online.school.edu.entity.response.CourseInfo;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface CourseMapper extends BaseMapper<EduCourse> {
 
+    CourseInfo getCourseInfo(String courseId);
 }

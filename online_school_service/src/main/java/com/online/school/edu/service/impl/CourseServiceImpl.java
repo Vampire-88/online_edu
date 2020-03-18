@@ -7,6 +7,7 @@ import com.online.school.edu.entity.EduCourse;
 import com.online.school.edu.entity.EduCourseDescription;
 import com.online.school.edu.entity.request.CourseInfoRequest;
 import com.online.school.edu.entity.request.CourseRequest;
+import com.online.school.edu.entity.response.CourseInfo;
 import com.online.school.edu.handler.EduException;
 import com.online.school.edu.mapper.CourseMapper;
 import com.online.school.edu.service.CourseDescriptionService;
@@ -144,6 +145,12 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, EduCourse> impl
     @Override
     public void removeCourseById(String id) {
         baseMapper.deleteById(id);
+    }
+
+    @Override
+    public CourseInfo getAllCourseInfo(String courseId) {
+        CourseInfo courseInfo = baseMapper.getCourseInfo(courseId);
+        return courseInfo;
     }
 
 

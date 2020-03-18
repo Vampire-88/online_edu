@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.online.school.edu.entity.EduCourse;
 import com.online.school.edu.entity.request.CourseInfoRequest;
 import com.online.school.edu.entity.request.CourseRequest;
+import com.online.school.edu.entity.response.CourseInfo;
 
 public interface CourseService extends IService<EduCourse> {
 
@@ -58,4 +59,14 @@ public interface CourseService extends IService<EduCourse> {
      * @created 2020-01-14 16:50
      */
     void removeCourseById(String id);
+
+    /**
+     * 功能描述 :
+     *
+     * @param
+     * @return
+     * @author 王威
+     * @created 2020-01-14 16:50
+     */
+    CourseInfo getAllCourseInfo(String courseId);
 }

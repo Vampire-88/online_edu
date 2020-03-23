@@ -49,6 +49,9 @@ public class Video implements Serializable {
     @ApiModelProperty(value = "是否可以试听：0免费 1收费")
     private Boolean isFree;
 
+    @ApiModelProperty(value = "原视频名称")
+    private String videoOriginalName;
+
     @ApiModelProperty(value = "视频资源")
     private String videoSourceId;
 

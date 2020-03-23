@@ -12,7 +12,7 @@ public class BaseController {
     /**
      * 功能描述 : TODO
      *
-     * @param  null : TODO
+     * @param   : TODO
      * @return
      * @author 王威
      * @created 2020-01-14 16:50
@@ -25,7 +25,7 @@ public class BaseController {
     /**
      * 功能描述 : TODO
      *
-     * @param  null : TODO
+     * @param   : TODO
      * @return
      * @author 王威
      * @created 2020-01-14 16:50

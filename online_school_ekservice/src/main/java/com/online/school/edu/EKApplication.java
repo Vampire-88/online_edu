@@ -2,12 +2,12 @@ package com.online.school.edu;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
-@EnableEurekaClient
+@EnableEurekaServer
 @SpringBootApplication
-public class VideoApplication {
-
+public class EKApplication {
     public static void main(String[] args) {
-        SpringApplication.run(VideoApplication.class,args);
+        SpringApplication.run(EKApplication.class,args);
     }
 }

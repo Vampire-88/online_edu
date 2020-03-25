@@ -6,6 +6,9 @@
         <module>online_school_service</module>
         <module>online_school_common</module>
         <module>online_school_aliyun_video</module>
+        <module>online_school_ekservice</module>
+        <module>online_school_staserivce</module>
+        <module>online_school_ucservice</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -135,8 +138,21 @@
             <artifactId>httpclient</artifactId>
             <version>4.5.2</version>
         </dependency>
+
     </dependencies>
 
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Finchley.SR2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

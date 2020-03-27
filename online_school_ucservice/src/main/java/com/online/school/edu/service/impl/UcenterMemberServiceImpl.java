@@ -6,6 +6,8 @@ import com.online.school.edu.service.UcenterMemberService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+
 /**
  * <p>
  * 会员表 服务实现类
@@ -17,4 +19,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class UcenterMemberServiceImpl extends ServiceImpl<UcenterMemberMapper, UcenterMember> implements UcenterMemberService {
 
+    @Resource
+    private UcenterMemberMapper ucenterMemberMapper;
+
+    @Override
+    public Integer countRegisterNum(String day) {
+        return ucenterMemberMapper.countRegisterNum(day);
+    }
 }

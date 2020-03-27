@@ -3,6 +3,7 @@ package com.online.school.edu.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fasterxml.jackson.databind.util.BeanUtil;
 import com.online.school.edu.entity.Chapter;
+import com.online.school.edu.entity.Video;
 import com.online.school.edu.entity.response.ChapterDto;
 import com.online.school.edu.mapper.ChapterMapper;
 import com.online.school.edu.service.ChapterService;
@@ -40,5 +41,12 @@ public class ChapterServiceImpl extends ServiceImpl<ChapterMapper, Chapter> impl
         });
 
         return chapterDtoList;
+    }
+
+    @Override
+    public void deleteChapterByCourseId(String id) {
+        QueryWrapper<Chapter> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("course_id",id);
+        baseMapper.delete(queryWrapper);
     }
 }

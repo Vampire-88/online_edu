@@ -69,4 +69,6 @@ public interface CourseService extends IService<EduCourse> {
      * @created 2020-01-14 16:50
      */
     CourseInfo getAllCourseInfo(String courseId);
+
+    void deleteCourseById(String id);
 }

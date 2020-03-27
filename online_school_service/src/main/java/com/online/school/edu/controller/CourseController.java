@@ -115,7 +115,7 @@ public class CourseController {
      */
     @DeleteMapping("deleteCourse/{id}")
     public JsonData deleteCourse(@PathVariable String id){
-        courseService.removeCourseById(id);
+        courseService.deleteCourseById(id);
         return JsonData.success();
     }
 

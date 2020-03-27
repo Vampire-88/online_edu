@@ -10,8 +10,10 @@ import com.online.school.edu.entity.request.CourseRequest;
 import com.online.school.edu.entity.response.CourseInfo;
 import com.online.school.edu.handler.EduException;
 import com.online.school.edu.mapper.CourseMapper;
+import com.online.school.edu.service.ChapterService;
 import com.online.school.edu.service.CourseDescriptionService;
 import com.online.school.edu.service.CourseService;
+import com.online.school.edu.service.VideoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -37,6 +39,10 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, EduCourse> impl
 
     @Resource
     private CourseDescriptionService courseDescriptionService;
+    @Resource
+    private ChapterService chapterService;
+    @Resource
+    private VideoService videoService;
 
 
 
@@ -151,6 +157,14 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, EduCourse> impl
     public CourseInfo getAllCourseInfo(String courseId) {
         CourseInfo courseInfo = baseMapper.getCourseInfo(courseId);
         return courseInfo;
+    }
+
+    @Override
+    public void deleteCourseById(String id) {
+        courseDescriptionService.deleteDescriptionByCourseId(id);
+        chapterService.deleteChapterByCourseId(id);
+        videoService.deleteVideoByCourseId(id);
+        baseMapper.deleteById(id);
     }
 
 

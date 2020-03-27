@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @RestController
 @RequestMapping("/vod")
@@ -26,5 +27,11 @@ public class VideoController {
     public JsonData deleteVid(@PathVariable String videoId){
         vidService.deleteVideoAl(videoId);
         return JsonData.success();
+    }
+
+    @DeleteMapping("deleteMoreVid")
+    public JsonData deleteMoreVid(@RequestParam("videoIdList") List<String> videoIdList){
+         vidService.deleteMoreVid(videoIdList);
+         return JsonData.success();
     }
 }

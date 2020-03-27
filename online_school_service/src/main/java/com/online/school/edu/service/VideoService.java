@@ -20,4 +20,8 @@ public interface VideoService extends IService<Video> {
     List<ChapterDto> getVideoDtoByChapterDto(List<ChapterDto> chapterDtoList);
 
     int countByChapterId(String chapterId);
+
+    void removeVidById(String videoId);
+
+    void deleteVideoByCourseId(String id);
 }

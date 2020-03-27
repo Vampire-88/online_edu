@@ -47,7 +47,7 @@ public class VideoController {
 
     @DeleteMapping("deleteVideo/{videoId}")
     public JsonData deleteVideo(@PathVariable String videoId){
-        videoService.removeById(videoId);
+        videoService.removeVidById(videoId);
         return JsonData.success();
     }
 

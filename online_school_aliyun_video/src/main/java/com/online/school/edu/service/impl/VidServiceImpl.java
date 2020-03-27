@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 import static com.online.school.edu.utils.ConstantPropertiesUtil.ACCESS_KEY_ID;
 import static com.online.school.edu.utils.ConstantPropertiesUtil.ACCESS_KEY_SECRET;
@@ -61,6 +62,11 @@ public class VidServiceImpl implements VidService {
         } catch (ClientException e) {
             logger.error("视频删除失败");
         }
+    }
+
+    @Override
+    public void deleteMoreVid(List<String> videoIdList) {
+        videoIdList.forEach(this::deleteVideoAl);
     }
 
     public static DefaultAcsClient initVodClient(String accessKeyId, String accessKeySecret) throws ClientException {

@@ -3,11 +3,7 @@ package com.online.school.edu.controller;
 
 import com.online.school.common.result.JsonData;
 import com.online.school.edu.service.UcenterMemberService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -19,8 +15,10 @@ import javax.annotation.Resource;
  * @author testjava
  * @since 2020-03-27
  */
+
 @RestController
 @RequestMapping("/edu/member")
+@CrossOrigin
 public class UcenterMemberController {
 
 

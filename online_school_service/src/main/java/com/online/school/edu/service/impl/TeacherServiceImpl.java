@@ -3,6 +3,7 @@ package com.online.school.edu.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.online.school.edu.entity.EduCourse;
 import com.online.school.edu.entity.EduTeacher;
 import com.online.school.edu.entity.request.TeacherRequest;
 import com.online.school.edu.handler.EduException;
@@ -12,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -72,5 +75,15 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, EduTeacher> i
         }
 
 
+    }
+
+    @Override
+    public List<EduCourse> getCourseListByTeacherId(String id) {
+        return null;
+    }
+
+    @Override
+    public Map<String, Object> getFrontTeacherList(Page<EduTeacher> pageTeacher) {
+        return null;
     }
 }

@@ -1,9 +1,13 @@
 package com.online.school.edu.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.online.school.edu.entity.EduCourse;
 import com.online.school.edu.entity.EduTeacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.online.school.edu.entity.request.TeacherRequest;
+
+import java.util.List;
+import java.util.Map;
 
 /**
 * @author 王威
@@ -18,4 +22,8 @@ import com.online.school.edu.entity.request.TeacherRequest;
 public interface TeacherService extends IService<EduTeacher> {
 
     void pageListCondition(Page<EduTeacher> eduTeacherPage, TeacherRequest teacherRequest);
+
+    List<EduCourse> getCourseListByTeacherId(String id);
+
+    Map<String, Object> getFrontTeacherList(Page<EduTeacher> pageTeacher);
 }

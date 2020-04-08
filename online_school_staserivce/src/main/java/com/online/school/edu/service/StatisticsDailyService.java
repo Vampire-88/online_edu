@@ -2,6 +2,9 @@ package com.online.school.edu.service;
 
 import com.online.school.edu.entity.StatisticsDaily;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.online.school.edu.entity.request.CountDataRequest;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -14,4 +17,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface StatisticsDailyService extends IService<StatisticsDaily> {
 
     void getCountRegisterNum(String day);
+
+    Map<String, Object> getDataCount(CountDataRequest countDataRequest);
 }

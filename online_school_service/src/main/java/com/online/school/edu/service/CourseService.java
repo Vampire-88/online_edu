@@ -6,6 +6,9 @@ import com.online.school.edu.entity.EduCourse;
 import com.online.school.edu.entity.request.CourseInfoRequest;
 import com.online.school.edu.entity.request.CourseRequest;
 import com.online.school.edu.entity.response.CourseInfo;
+import com.online.school.edu.entity.response.TeacherAllInfoDto;
+
+import java.util.Map;
 
 public interface CourseService extends IService<EduCourse> {
 
@@ -71,4 +74,8 @@ public interface CourseService extends IService<EduCourse> {
     CourseInfo getAllCourseInfo(String courseId);
 
     void deleteCourseById(String id);
+
+    Map<String, Object> listCoursePage(Page<EduCourse> pageCourse);
+
+    TeacherAllInfoDto getTeacherAllInfo(String id);
 }

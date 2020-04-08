@@ -8,6 +8,7 @@ import com.online.school.edu.entity.EduCourseDescription;
 import com.online.school.edu.entity.request.CourseInfoRequest;
 import com.online.school.edu.entity.request.CourseRequest;
 import com.online.school.edu.entity.response.CourseInfo;
+import com.online.school.edu.entity.response.TeacherAllInfoDto;
 import com.online.school.edu.handler.EduException;
 import com.online.school.edu.mapper.CourseMapper;
 import com.online.school.edu.service.ChapterService;
@@ -23,6 +24,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
+import java.util.Map;
 
 /**
  * <p>
@@ -165,6 +167,16 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, EduCourse> impl
         chapterService.deleteChapterByCourseId(id);
         videoService.deleteVideoByCourseId(id);
         baseMapper.deleteById(id);
+    }
+
+    @Override
+    public Map<String, Object> listCoursePage(Page<EduCourse> pageCourse) {
+        return null;
+    }
+
+    @Override
+    public TeacherAllInfoDto getTeacherAllInfo(String id) {
+        return null;
     }
 
 

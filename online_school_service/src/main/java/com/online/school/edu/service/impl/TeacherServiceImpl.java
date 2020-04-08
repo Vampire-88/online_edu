@@ -8,11 +8,14 @@ import com.online.school.edu.entity.EduTeacher;
 import com.online.school.edu.entity.request.TeacherRequest;
 import com.online.school.edu.handler.EduException;
 import com.online.school.edu.mapper.TeacherMapper;
+import com.online.school.edu.service.CourseService;
 import com.online.school.edu.service.TeacherService;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import javax.annotation.Resource;
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +29,9 @@ import java.util.Map;
  */
 @Service("eduTeacherService")
 public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, EduTeacher> implements TeacherService {
+
+    @Resource
+    private CourseService courseService;
 
     /**
     * 功能描述 : 组合条件查询讲师
@@ -79,11 +85,30 @@ public class TeacherServiceImpl extends ServiceImpl<TeacherMapper, EduTeacher> i
 
     @Override
     public List<EduCourse> getCourseListByTeacherId(String id) {
-        return null;
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        wrapper.eq("teacher_id",id);
+        List<EduCourse> list = courseService.list(wrapper);
+        return list;
     }
 
     @Override
     public Map<String, Object> getFrontTeacherList(Page<EduTeacher> pageTeacher) {
-        return null;
+        baseMapper.selectPage(pageTeacher,null);
+        List<EduTeacher> records = pageTeacher.getRecords();
+        long total = pageTeacher.getTotal();
+        long size = pageTeacher.getSize();
+        long pages = pageTeacher.getPages();
+        long current = pageTeacher.getCurrent();
+        boolean hasNext = pageTeacher.hasNext();
+        boolean hasPrevious = pageTeacher.hasPrevious();
+        Map<String,Object> map = new HashMap<>();
+        map.put("items", records);
+        map.put("current", current);
+        map.put("pages", pages);
+        map.put("size", size);
+        map.put("total", total);
+        map.put("hasNext", hasNext);
+        map.put("hasPrevious", hasPrevious);
+        return map;
     }
 }

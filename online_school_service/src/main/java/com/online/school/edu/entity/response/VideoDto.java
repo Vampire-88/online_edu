@@ -8,4 +8,6 @@ public class VideoDto {
     private String id;
 
     private String title;
+
+    private String videoSourceId;
 }

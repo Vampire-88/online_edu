@@ -21,4 +21,17 @@
     WHERE
         c.id = #{courseId}
     </select>
+
+    <select id="getTeacherAllInfo" resultType="com.online.school.edu.entity.response.TeacherAllInfoDto">
+        SELECT c.id,c.title,c.price,c.cover,c.lesson_num,c.buy_count,c.view_count,
+               cd.description,
+               et.id AS teacherId,et.name AS teacherName,et.avatar,et.intro,
+               s1.id AS subjectLevelOneId,s1.title AS subjectLevelOne,
+               s2.id AS subjectLevelTwoId,s2.title AS subjectLevelTwo
+        FROM edu_course c LEFT OUTER JOIN edu_course_description cd ON c.id=cd.id
+                          LEFT OUTER JOIN edu_teacher et ON c.teacher_id=et.id
+                          LEFT OUTER JOIN edu_subject s1 ON c.subject_parent_id=s1.id
+                          LEFT OUTER JOIN edu_subject s2 ON c.subject_id=s2.id
+        WHERE c.id=#{id}
+    </select>
 </mapper>

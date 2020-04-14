@@ -24,6 +24,8 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -74,9 +76,9 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, EduCourse> impl
         EduCourseDescription eduCourseDescription = new EduCourseDescription();
         BeanUtils.copyProperties(courseInfoRequest, eduCourse);
         BeanUtils.copyProperties(courseInfoRequest, eduCourseDescription);
-        if (!this.updateById(eduCourse) && courseDescriptionService.updateById(eduCourseDescription)) {
+        this.updateById(eduCourse);
+        if (!courseDescriptionService.updateById(eduCourseDescription)) {
             logger.info("修改课程信息失败");
-            throw new EduException("修改课程信息失败");
         }
         if (StringUtils.isEmpty(courseDescriptionService.getById(eduCourseDescription.getId()))) {
             if (!courseDescriptionService.save(eduCourseDescription)) {
@@ -171,12 +173,28 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, EduCourse> impl
 
     @Override
     public Map<String, Object> listCoursePage(Page<EduCourse> pageCourse) {
-        return null;
+        baseMapper.selectPage(pageCourse,null);
+        List<EduCourse> records = pageCourse.getRecords();
+        long total = pageCourse.getTotal();
+        long size = pageCourse.getSize();
+        long pages = pageCourse.getPages();
+        long current = pageCourse.getCurrent();
+        boolean hasNext = pageCourse.hasNext();
+        boolean hasPrevious = pageCourse.hasPrevious();
+        Map<String,Object> map = new HashMap<>();
+        map.put("items", records);
+        map.put("current", current);
+        map.put("pages", pages);
+        map.put("size", size);
+        map.put("total", total);
+        map.put("hasNext", hasNext);
+        map.put("hasPrevious", hasPrevious);
+        return map;
     }
 
     @Override
     public TeacherAllInfoDto getTeacherAllInfo(String id) {
-        return null;
+        return baseMapper.getTeacherAllInfo(id);
     }
 
 

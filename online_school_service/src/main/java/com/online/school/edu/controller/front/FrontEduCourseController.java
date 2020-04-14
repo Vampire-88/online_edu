@@ -7,6 +7,7 @@ import com.online.school.edu.entity.response.ChapterDto;
 import com.online.school.edu.entity.response.TeacherAllInfoDto;
 import com.online.school.edu.service.ChapterService;
 import com.online.school.edu.service.CourseService;
+import com.online.school.edu.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,6 +27,9 @@ public class FrontEduCourseController {
     @Resource
     private ChapterService chapterService;
 
+    @Resource
+    private VideoService videoService;
+
     //课程分页列表的方法
     @GetMapping("{page}/{limit}")
     public JsonData getCourseListPage(@PathVariable Long page,
@@ -43,6 +47,7 @@ public class FrontEduCourseController {
 
         //2 根据课程id查询课程里面所有的章节，章节里面所有小节
         List<ChapterDto> chapterVideoList = chapterService.getChapterDtoByCourseId(id);
+        chapterVideoList = videoService.getVideoDtoByChapterDto(chapterVideoList);
         
         return JsonData.success().data("courseInfo",courseInfoDto).data("chapterVideoList",chapterVideoList);
     }
